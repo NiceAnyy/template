@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>星星评分demo</title>
+	</head>
+	<body>
+		<div>
+			<p>默认样式</p>
+			<div id="default-star"></div>
+			
+			<p>设置默认得分</p>
+			<div id="default-score-star"></div>
+			
+			<p>设置默认得分并返回得分</p>
+			<div id="default-score-return-star" data-score="2"></div>
+		</div>
+	</body>
+</html>
+<script src="../../plugins/jquery.min.js"></script>
+<script src="../../js/star.js"></script>
+<script>
+	$('#default-star').raty();
+	$('#default-score-star').raty({score:4});
+	$('#default-score-return-star').raty({
+		score:function(){
+			return $(this).attr('data-score');
+		}
+	})
+</script>

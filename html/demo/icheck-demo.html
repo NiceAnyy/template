@@ -1,0 +1,124 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>单选复选按钮</title>
+		<!--图表icon-->
+		<!--复选样式-->
+		<link rel="stylesheet" href="../../plugins/iCheck/blue.css" />
+	</head>
+	<body style="padding: 30px;">
+		<div class="">
+			<dl class="clear">
+				<dd class="selected">
+					<div class="skin-section">
+						<ul class="list">
+							<li>
+								<input type="checkbox">
+								<label for="square-checkbox-1">Checkbox 1</label>
+							</li>
+							<li>
+								<input type="checkbox" checked="aa">
+								<label for="square-checkbox-2">Checkbox 2</label>
+							</li>
+						</ul>
+						<ul class="list">
+							<li>
+								<input type="radio">
+								<label for="square-radio-1">Radio button 1</label>
+							</li>
+							<li>
+								<input type="radio" checked>
+							</li>
+						</ul>
+					</div>
+				</dd>
+			</dl>
+		</div>
+		<div class="">
+			<dl class="clear">
+				<dd class="selected">
+					<div class="skin-section">
+						<ul class="list">
+							<li>
+								<input type="checkbox" name="djqs">
+								<label for="square-checkbox-1">全选 </label>
+							</li>
+							<li>
+								<input type="checkbox" name="djq">
+								<label for="square-checkbox-2">Checkbox 2</label>
+							</li>
+							<li>
+								<input type="checkbox" name="djq">
+								<label for="square-checkbox-2">Checkbox 2</label>
+							</li>
+							<li>
+								<input type="checkbox" name="djq">
+								<label for="square-checkbox-2">Checkbox 2</label>
+							</li>
+							<li>
+								<input type="checkbox" name="djq">
+								<label for="square-checkbox-2">Checkbox 2</label>
+							</li>
+							<li>
+								<input type="checkbox" name="djq">
+								<label for="square-checkbox-2">Checkbox 2</label>
+							</li>
+							<li>
+								<input type="checkbox" name="djq">
+								<label for="square-checkbox-2">Checkbox 2</label>
+							</li>
+						</ul>
+						<!--<ul class="list">
+							<li>
+								<input type="radio">
+								<label for="square-radio-1">Radio button 1</label>
+							</li>
+							<li>
+								<input type="radio" checked>
+								<label for="square-radio-2">Radio button 2</label>
+							</li>
+						</ul>-->
+					</div>
+				</dd>
+			</dl>
+		</div>
+		<script src="../../plugins/jquery.min.js"></script>
+		<script src="../../plugins/iCheck/icheck.min.js"></script>
+		<script>
+			//修改单选复选框样式
+			$(document).ready(function(){
+			  $('input').iCheck({
+			    checkboxClass: 'icheckbox_square-blue',
+			    radioClass: 'iradio_square-blue',
+			    increaseArea: '20%' // optional
+			  });
+			});
+			/*checkbox全选*/
+			function AllCheckbox(obj,obj1){
+				/*原始的checkbox*/
+				$("input[name="+obj+"]").on('change',function(){
+					alert(1)
+					if(this.checked){
+						$("input[name="+obj1+"]").prop('checked','true')
+					}else{
+						$("input[name="+obj1+"]").prop('checked','')
+					}
+				});
+				/*icheck版全选*/
+				$('input[name='+obj+']').on('ifChecked',function(){
+					$('input[name='+obj1+']').iCheck('check');
+				});
+				$('input[name='+obj+']').on('ifUnchecked',function(){
+					$('input[name='+obj1+']').iCheck('uncheck');
+					$("input[name="+obj+"]").iCheck('uncheck');
+				});
+				
+			}
+			AllCheckbox('djqs','djq')
+			
+		</script>
+	</body>
+
+</html>

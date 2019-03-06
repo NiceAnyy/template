@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>各种弹框</title>
+		<link rel="stylesheet" href="../../plugins/bootstrap/css/bootstrap.css" />
+	</head>
+	<body style="padding: 20px;">
+		<div id="app" style="display: none;">
+			这里是自定义内容 随意玩
+		</div>
+		<button onclick="Layer.showAlert('有问题了啊');" class="btn btn-primary">警告</button>
+		
+		<button onclick="Layer.showSucAlert();" class="btn btn-primary">操作成功提示框</button>
+		
+		<button onclick="Layer.showFailAlert();" class="btn btn-primary">操作失败提示框</button>
+		
+		<button onclick="Layer.showFailAlert('我失败了',0);" class="btn btn-primary">操作失败提示框+自定义内容+不自动关闭</button>
+		
+		<br/> <br/> OpenDialog (content-url)
+		
+		<button onclick="Layer.openDialog('我是Open 的url窗口','http://baidu.com');" class="btn btn-primary">iframe层</button>
+		
+		<button onclick="Layer.openDialog('我是Open 的url窗口','http://baidu.com',400);" class="btn btn-primary">iframe层+自定义宽</button>
+		
+		<button onclick="Layer.openDialog('我是Open 的url窗口','http://baidu.com',500,500);" class="btn btn-primary">iframe层+自定义宽高</button>
+		
+		<br/> <br/> OpenDom (content-dom)
+		
+		<button onclick="Layer.openDom('我是Open 的dom窗口','可以是字符串，或者dom  或者$(dom)');" class="btn btn-primary">页面层</button>
+		
+		<button id="djqs"  class="btn btn-primary">弹出页面div</button>
+		
+		<button onclick="Layer.openDom('我是Open 的dom窗口','http://baidu.com',400);" class="btn btn-primary">iframe层+自定义宽</button>
+		
+		<button onclick="Layer.openDom('我是Open 的dom窗口','http://baidu.com',500,500);" class="btn btn-primary">iframe层+自定义宽高</button>
+		
+		<br/><br/> Message
+		
+		<button onclick="Layer.showMsg('我只是简单的提示一下');" class="btn btn-primary">对话框</button>
+		
+		<button onclick="Layer.showSucMsg('我是成功的提示框')" class="btn btn-primary">成功的提示框</button>
+		
+		
+		<br/> <br/> Confirm
+		
+		<button onclick="var a = Layer.showConfirm('你确定要这样操作吗',function(){Layer.showMsg('我只是简单的提示一下你选择了确定')});" class="btn btn-primary">Confirm对话框</button>
+		
+		<br/> <br/> 加载loading
+		
+		<button id="DJQ"  class="btn btn-primary">loading 默认2秒关闭  可设置 不关闭</button>
+			
+		<br/> <br/>
+	</body>
+</html>
+<script src="../../plugins/jquery.min.js"></script>
+<script src="../../plugins/bootstrap/js/bootstrap.js"></script>
+<script src="../../plugins/layer/layer.min.js"></script>
+<script src="../../js/LayerCommon.js"></script>
+<script>
+	/*layui*/
+//	layui.use(['layer', 'form', 'element'], function() {
+//		var $ = layui.jquery,
+//			element = layui.element(),
+//			layerTips = parent.layer === undefined ? layui.layer : parent.layer, //获取父窗口的layer对象
+//			layer = layui.layer, //获取当前窗口的layer对象
+//			form = layui.form();
+//	});
+	/*打开等待狂  选择不自动关闭，设置定时器  可以加载ajax 完毕后关闭*/
+	$("#DJQ").click(function(){
+		Layer.showLoading('玩命加载...',0,showCall);
+		/*模拟加载  ajax  1.5秒*/
+		setTimeout(function(){
+			//Layer.closeOnlyLayer();
+			layer.close(layer.index);
+		},1500)
+	});
+	function showCall(index) {
+		alert("我是回调奥" + index);
+		Layer.closeLayer(index);
+	};
+	$("#djqs").click(function(){
+		Layer.openDom('我是Open 的dom窗口',$("#app"))
+	})
+</script>
